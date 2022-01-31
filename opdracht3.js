@@ -169,12 +169,12 @@ const tvBrands = inventory3.map((tvBrand) => {
 const brandsElement = document.getElementById("tvBrands");
 brandsElement.textContent = `Wij verkopen de volgende merken: ${tvBrands}.`
 
-//Opdracht 3b - deze opdracht snap ik niet helemaal?
+//Opdracht 3b - snap ik de opdracht zo goed?
 function tvBrands2(arrayWithObjects) {
     for (let i = 0; i < arrayWithObjects.length; i++) {
-        arrayWithObjects[i] = arrayWithObjects.brand;
+        arrayWithObjects[i] = arrayWithObjects[i].brand;
     }
     return arrayWithObjects;
 }
 
-tvBrands2(inventory3);
+console.log(tvBrands2(inventory3));

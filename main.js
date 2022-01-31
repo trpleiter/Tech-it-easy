@@ -191,3 +191,5 @@ const tvPriceLowToHigh = inventory.sort((a,b) => {
 
 console.log(tvPriceLowToHigh);
 
+//Bonus
+

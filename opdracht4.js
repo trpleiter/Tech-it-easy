@@ -178,7 +178,20 @@ console.log(tvPrice(inventory4[0]));
 //Opdracht 4c
 
 function tvSize(tvObject) {
-    if (tvObject.availableSizes.length === 4) {
+    if (tvObject.availableSizes.length === 6) {
+        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[3] + " inch (" + tvObject.availableSizes[3] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[4] + " inch (" + tvObject.availableSizes[4] * 2.54.toFixed(0) + "cm)"
+            + tvObject.availableSizes[5] + " inch (" + tvObject.availableSizes[5] * 2.54.toFixed(0) + "cm)";
+    } else if (tvObject.availableSizes.length === 5) {
+        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[3] + " inch (" + tvObject.availableSizes[3] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[4] + " inch (" + tvObject.availableSizes[4] * 2.54.toFixed(0) + "cm)";
+    } else if (tvObject.availableSizes.length === 4) {
         return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
             + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
             + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
@@ -198,15 +211,19 @@ function tvSize(tvObject) {
 console.log(tvSize(inventory4[6]));
 
 //Opdracht 4d
-// const informationElement = document.getElementById("tvInformation");
-// informationElement.textContent = `${tvName(inventory4[0])} \r\n ${tvPrice(inventory4[0])} \r\n ${tvSize(inventory4[0])}`;
+const informationElement = document.getElementById("tvInformation");
+informationElement.textContent = `${tvName(inventory4[0])} \r\n ${tvPrice(inventory4[0])} \r\n ${tvSize(inventory4[0])}`;
 
 //Opdracht 4e
-function allTvInformation(tvArray) {
-    for (let i = 0; i < tvArray.length; i++) {
-        tvArray[i] = tvName(tvArray[i]) + tvPrice(tvArray[i]) + tvSize(tvArray[i])
+    function allTvInformation(tvArray) {
+        for (let i = 0; i < tvArray.length; i++) {
+            tvArray[i] = tvName(tvArray[i]) + tvPrice(tvArray[i]) +  tvSize(tvArray[i]);
+        }
+        return tvArray
     }
-    return tvArray
-}
 
-console.log(allTvInformation(inventory4));
+    const allTvElement = document.getElementById("allTvs");
+    allTvElement.textContent = `${allTvInformation(inventory4)}`;
+
+//Ik krijg het niet voor elkaar om opdracht 4e in de juiste format te krijgen.
+
