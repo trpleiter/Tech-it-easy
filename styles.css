@@ -15,3 +15,7 @@
     font-size: xxx-large;
     font-weight: bold;
 }
+
+#tvInformation {
+    white-space: pre;
+}

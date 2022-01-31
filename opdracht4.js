@@ -1,4 +1,4 @@
-const inventory2 = [
+const inventory4 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -161,45 +161,52 @@ const inventory2 = [
     },
 ];
 
-// Opdracht 2a
-const amountOfSalesPerType = inventory2.map((amountOfSales) => {
-    return amountOfSales.sold;
-});
-
-function totalAmountOfSales(amountOfSalesPerType) {
-    let sumSoldTvs = 0;
-    for (let i = 0; i < amountOfSalesPerType.length; i++) {
-        sumSoldTvs += amountOfSalesPerType[i];
-    }
-    return sumSoldTvs;
+// Opdracht 4a
+function tvName(tvObject) {
+    return tvObject.brand + " " + tvObject.type + " - " + tvObject.name;
 }
 
-console.log(totalAmountOfSales(amountOfSalesPerType));
+console.log(tvName(inventory4[0]));
 
-// Opdracht 2b
-const salesElement = document.getElementById("totalSales");
-salesElement.textContent = `Het totaal aantal verkochte tv's is ${totalAmountOfSales(amountOfSalesPerType)} stuks.`
-
-//Opdracht 2c
-const totalInventory = inventory2.map((individualInventory) => {
-    return individualInventory.originalStock;
-});
-
-function sumTotalInventory(totalInventory) {
-    let sumInventoryTvs = 0;
-    for (let i = 0; i < totalInventory.length; i++) {
-        sumInventoryTvs += totalInventory[i];
-    }
-    return sumInventoryTvs;
+// Opdracht 4b
+function tvPrice(tvObject) {
+    return "€" + tvObject.price + ",-";
 }
 
-console.log(sumTotalInventory(totalInventory));
+console.log(tvPrice(inventory4[0]));
 
-//Opdracht 2d
-const stockElement = document.getElementById("totalInventory");
-stockElement.textContent = `Het totaal ingekocht tv's is ${sumTotalInventory(totalInventory)} stuks.`
+//Opdracht 4c
 
-//Opdracht 2e
-const televisionToSell = sumTotalInventory(totalInventory) - totalAmountOfSales(amountOfSalesPerType);
-const toSellElement = document.getElementById("tvsToSell");
-toSellElement.textContent = `Het aantal te verkopen tv's is ${televisionToSell} stuks.`;
+function tvSize(tvObject) {
+    if (tvObject.availableSizes.length === 4) {
+        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[3] + " inch (" + tvObject.availableSizes[3] * 2.54.toFixed(0) + "cm)";
+    } else if (tvObject.availableSizes.length === 3) {
+        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm)";
+    } else if (tvObject.availableSizes.length === 2) {
+        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
+            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm)";
+    } else {
+        return tvObject.availableSizes + " inch (" + tvObject.availableSizes * 2.54.toFixed(0) + "cm)";
+    }
+}
+
+console.log(tvSize(inventory4[6]));
+
+//Opdracht 4d
+// const informationElement = document.getElementById("tvInformation");
+// informationElement.textContent = `${tvName(inventory4[0])} \r\n ${tvPrice(inventory4[0])} \r\n ${tvSize(inventory4[0])}`;
+
+//Opdracht 4e
+function allTvInformation(tvArray) {
+    for (let i = 0; i < tvArray.length; i++) {
+        tvArray[i] = tvName(tvArray[i]) + tvPrice(tvArray[i]) + tvSize(tvArray[i])
+    }
+    return tvArray
+}
+
+console.log(allTvInformation(inventory4));

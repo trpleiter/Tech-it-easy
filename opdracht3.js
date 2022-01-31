@@ -1,4 +1,4 @@
-const inventory2 = [
+const inventory3 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -161,45 +161,20 @@ const inventory2 = [
     },
 ];
 
-// Opdracht 2a
-const amountOfSalesPerType = inventory2.map((amountOfSales) => {
-    return amountOfSales.sold;
-});
+//Opdracht 3a
+const tvBrands = inventory3.map((tvBrand) => {
+    return tvBrand.brand;
+})
 
-function totalAmountOfSales(amountOfSalesPerType) {
-    let sumSoldTvs = 0;
-    for (let i = 0; i < amountOfSalesPerType.length; i++) {
-        sumSoldTvs += amountOfSalesPerType[i];
+const brandsElement = document.getElementById("tvBrands");
+brandsElement.textContent = `Wij verkopen de volgende merken: ${tvBrands}.`
+
+//Opdracht 3b - deze opdracht snap ik niet helemaal?
+function tvBrands2(arrayWithObjects) {
+    for (let i = 0; i < arrayWithObjects.length; i++) {
+        arrayWithObjects[i] = arrayWithObjects.brand;
     }
-    return sumSoldTvs;
+    return arrayWithObjects;
 }
 
-console.log(totalAmountOfSales(amountOfSalesPerType));
-
-// Opdracht 2b
-const salesElement = document.getElementById("totalSales");
-salesElement.textContent = `Het totaal aantal verkochte tv's is ${totalAmountOfSales(amountOfSalesPerType)} stuks.`
-
-//Opdracht 2c
-const totalInventory = inventory2.map((individualInventory) => {
-    return individualInventory.originalStock;
-});
-
-function sumTotalInventory(totalInventory) {
-    let sumInventoryTvs = 0;
-    for (let i = 0; i < totalInventory.length; i++) {
-        sumInventoryTvs += totalInventory[i];
-    }
-    return sumInventoryTvs;
-}
-
-console.log(sumTotalInventory(totalInventory));
-
-//Opdracht 2d
-const stockElement = document.getElementById("totalInventory");
-stockElement.textContent = `Het totaal ingekocht tv's is ${sumTotalInventory(totalInventory)} stuks.`
-
-//Opdracht 2e
-const televisionToSell = sumTotalInventory(totalInventory) - totalAmountOfSales(amountOfSalesPerType);
-const toSellElement = document.getElementById("tvsToSell");
-toSellElement.textContent = `Het aantal te verkopen tv's is ${televisionToSell} stuks.`;
+tvBrands2(inventory3);
