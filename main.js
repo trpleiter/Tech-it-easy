@@ -185,11 +185,32 @@ const tvsWithAmbiLight = inventory.filter((tvWithAmbiLight) => {
 console.log(tvsWithAmbiLight);
 
 // Opdracht 1d
-const tvPriceLowToHigh = inventory.sort((a,b) => {
+const tvPriceLowToHigh = inventory.sort((a, b) => {
     return a.price - b.price;
 });
 
 console.log(tvPriceLowToHigh);
 
-//Bonus
+//Bonus 1
+// function sortPrice() {
+//     console.log(tvPriceLowToHigh);
+// }
+//
+// const buttonElementPrice = document.getElementById("sort-price");
+// buttonElementPrice.addEventListener('click',sortPrice);
+//
+// function ambiLight() {
+//    console.log(tvsWithAmbiLight);
+// }
+//
+// const buttonElementAmbi = document.getElementById("ambilight-tvs");
+// buttonElementAmbi.addEventListener('click',ambiLight);
+//
+// function outOfStock() {
+//     console.log(tvsOutOfStock);
+// }
+//
+// const buttonElementOOS = document.getElementById("sold-out");
+// buttonElementOOS.addEventListener('click',outOfStock);
 
+// Bonus 2

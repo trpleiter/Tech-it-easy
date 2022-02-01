@@ -212,18 +212,55 @@ console.log(tvSize(inventory4[6]));
 
 //Opdracht 4d
 const informationElement = document.getElementById("tvInformation");
-informationElement.textContent = `${tvName(inventory4[0])} \r\n ${tvPrice(inventory4[0])} \r\n ${tvSize(inventory4[0])}`;
+informationElement.innerHTML =
+    `<h3>${tvName(inventory4[0])}</h3>
+     <p>${tvPrice(inventory4[0])}</p> 
+     <p>${tvSize(inventory4[0])}</p>`;
 
 //Opdracht 4e
-    function allTvInformation(tvArray) {
-        for (let i = 0; i < tvArray.length; i++) {
-            tvArray[i] = tvName(tvArray[i]) + tvPrice(tvArray[i]) +  tvSize(tvArray[i]);
-        }
-        return tvArray
+function generateTV(tvArray) {
+    let informationString = ""
+    for (let i = 0; i < tvArray.length; i++) {
+        informationString +=
+            `<div class= alltvs>
+                <h3>${tvName(tvArray[i])}</h3> 
+                <p>${tvPrice(tvArray[i])}</p>
+                <p>${tvSize(tvArray[i])}</p>
+                </div>`;
     }
+    return informationString;
+}
 
-    const allTvElement = document.getElementById("allTvs");
-    allTvElement.textContent = `${allTvInformation(inventory4)}`;
+const allTvElement = document.getElementById("allTvs");
+allTvElement.innerHTML = generateTV(inventory4);
 
-//Ik krijg het niet voor elkaar om opdracht 4e in de juiste format te krijgen.
+//    Bonus
+//Prijs
+function sortPrice() {
+    inventory4.sort((a, b) =>
+        a.price - b.price);
+    allTvElement.innerHTML = generateTV(inventory4);
+}
 
+const buttonElementPrice = document.getElementById("sort-price");
+buttonElementPrice.addEventListener('click', sortPrice);
+
+//AmbiLight
+function ambiLight() {
+    const ambiInventory =inventory4.filter((tvWithAmbiLight) =>
+        tvWithAmbiLight.options.ambiLight === true);
+    allTvElement.innerHTML = generateTV(ambiInventory);
+}
+
+const buttonElementAmbi = document.getElementById("ambilight-tvs");
+buttonElementAmbi.addEventListener('click', ambiLight);
+
+//Sold-out
+function outOfStock() {
+    const oosInventory = inventory4.filter((outOfStock) =>
+        outOfStock.originalStock - outOfStock.sold === 0);
+    allTvElement.innerHTML = generateTV(oosInventory);
+}
+
+const buttonElementOOS = document.getElementById("sold-out");
+buttonElementOOS.addEventListener('click', outOfStock);
