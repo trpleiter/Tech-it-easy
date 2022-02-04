@@ -1,5 +1,4 @@
-// VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory4 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -162,55 +161,77 @@ const inventory = [
     },
 ];
 
-//Opdracht 1a
-const listOfTvTypes = inventory.map((tvType) => {
-    return tvType.type;
-});
+// Opdracht 4a
+function tvName(tvObject) {
+    return tvObject.brand + " " + tvObject.type + " - " + tvObject.name;
+}
 
-console.log(listOfTvTypes);
+console.log(tvName(inventory4[0]));
 
-// Opdracht 1b
-const tvsOutOfStock = inventory.filter((outOfStock) => {
-    return outOfStock.originalStock === outOfStock.sold;
-});
+// Opdracht 4b
+function tvPrice(tvObject) {
+    return `€${tvObject.price},-`;
+}
 
-console.log(tvsOutOfStock);
+console.log(tvPrice(inventory4[0]));
 
-// Opdracht 1c
+//Opdracht 4c
 
-const tvsWithAmbiLight = inventory.filter((tvWithAmbiLight) => {
-    return tvWithAmbiLight.options.ambiLight;
-});
+function tvSize(tvObject) {
+    return tvObject.availableSizes.map(size => `${size} inch (${(size * 2.54).toFixed(0)} cm)`).join(" | ");
+}
 
-console.log(tvsWithAmbiLight);
+//Opdracht 4d
+const informationElement = document.getElementById("tvInformation");
+informationElement.innerHTML =
+    `<h3>${tvName(inventory4[0])}</h3>
+     <p>${tvPrice(inventory4[0])}</p> 
+     <p>${tvSize(inventory4[0])}</p>`;
 
-// Opdracht 1d
-const tvPriceLowToHigh = inventory.sort((a, b) => {
-    return a.price - b.price;
-});
+//Opdracht 4e
+function generateTV(tvArray) {
+    let informationString = ""
+    for (let i = 0; i < tvArray.length; i++) {
+        informationString +=
+            `<div class= alltvs>
+                <h3>${tvName(tvArray[i])}</h3> 
+                <p>${tvPrice(tvArray[i])}</p>
+                <p>${tvSize(tvArray[i])}</p>
+                </div>`;
+    }
+    return informationString;
+}
 
-console.log(tvPriceLowToHigh);
+const allTvElement = document.getElementById("allTvs");
+allTvElement.innerHTML = generateTV(inventory4);
 
-//Bonus 1
-// function sortPrice() {
-//     console.log(tvPriceLowToHigh);
-// }
-//
-// const buttonElementPrice = document.getElementById("sort-price");
-// buttonElementPrice.addEventListener('click',sortPrice);
-//
-// function ambiLight() {
-//    console.log(tvsWithAmbiLight);
-// }
-//
-// const buttonElementAmbi = document.getElementById("ambilight-tvs");
-// buttonElementAmbi.addEventListener('click',ambiLight);
-//
-// function outOfStock() {
-//     console.log(tvsOutOfStock);
-// }
-//
-// const buttonElementOOS = document.getElementById("sold-out");
-// buttonElementOOS.addEventListener('click',outOfStock);
+//    Bonus
+//Prijs
+function sortPrice() {
+    inventory4.sort((a, b) =>
+        a.price - b.price);
+    allTvElement.innerHTML = generateTV(inventory4);
+}
 
-// Bonus 2
+const buttonElementPrice = document.getElementById("sort-price");
+buttonElementPrice.addEventListener('click', sortPrice);
+
+//AmbiLight
+function ambiLight() {
+    const ambiInventory =inventory4.filter((tvWithAmbiLight) =>
+        tvWithAmbiLight.options.ambiLight === true);
+    allTvElement.innerHTML = generateTV(ambiInventory);
+}
+
+const buttonElementAmbi = document.getElementById("ambilight-tvs");
+buttonElementAmbi.addEventListener('click', ambiLight);
+
+//Sold-out
+function outOfStock() {
+    const oosInventory = inventory4.filter((outOfStock) =>
+        outOfStock.originalStock - outOfStock.sold === 0);
+    allTvElement.innerHTML = generateTV(oosInventory);
+}
+
+const buttonElementOOS = document.getElementById("sold-out");
+buttonElementOOS.addEventListener('click', outOfStock);

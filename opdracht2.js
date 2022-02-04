@@ -1,5 +1,4 @@
-// VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory2 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -162,55 +161,45 @@ const inventory = [
     },
 ];
 
-//Opdracht 1a
-const listOfTvTypes = inventory.map((tvType) => {
-    return tvType.type;
+// Opdracht 2a
+const amountOfSalesPerType = inventory2.map((amountOfSales) => {
+    return amountOfSales.sold;
 });
 
-console.log(listOfTvTypes);
+function totalAmountOfSales(amountOfSalesPerType) {
+    let sumSoldTvs = 0;
+    for (let i = 0; i < amountOfSalesPerType.length; i++) {
+        sumSoldTvs += amountOfSalesPerType[i];
+    }
+    return sumSoldTvs;
+}
 
-// Opdracht 1b
-const tvsOutOfStock = inventory.filter((outOfStock) => {
-    return outOfStock.originalStock === outOfStock.sold;
+console.log(totalAmountOfSales(amountOfSalesPerType));
+
+// Opdracht 2b
+const salesElement = document.getElementById("totalSales");
+salesElement.textContent = `Het totaal aantal verkochte tv's is ${totalAmountOfSales(amountOfSalesPerType)} stuks.`
+
+//Opdracht 2c
+const totalInventory = inventory2.map((individualInventory) => {
+    return individualInventory.originalStock;
 });
 
-console.log(tvsOutOfStock);
+function sumTotalInventory(totalInventory) {
+    let sumInventoryTvs = 0;
+    for (let i = 0; i < totalInventory.length; i++) {
+        sumInventoryTvs += totalInventory[i];
+    }
+    return sumInventoryTvs;
+}
 
-// Opdracht 1c
+console.log(sumTotalInventory(totalInventory));
 
-const tvsWithAmbiLight = inventory.filter((tvWithAmbiLight) => {
-    return tvWithAmbiLight.options.ambiLight;
-});
+//Opdracht 2d
+const stockElement = document.getElementById("totalInventory");
+stockElement.textContent = `Het totaal ingekocht tv's is ${sumTotalInventory(totalInventory)} stuks.`
 
-console.log(tvsWithAmbiLight);
-
-// Opdracht 1d
-const tvPriceLowToHigh = inventory.sort((a, b) => {
-    return a.price - b.price;
-});
-
-console.log(tvPriceLowToHigh);
-
-//Bonus 1
-// function sortPrice() {
-//     console.log(tvPriceLowToHigh);
-// }
-//
-// const buttonElementPrice = document.getElementById("sort-price");
-// buttonElementPrice.addEventListener('click',sortPrice);
-//
-// function ambiLight() {
-//    console.log(tvsWithAmbiLight);
-// }
-//
-// const buttonElementAmbi = document.getElementById("ambilight-tvs");
-// buttonElementAmbi.addEventListener('click',ambiLight);
-//
-// function outOfStock() {
-//     console.log(tvsOutOfStock);
-// }
-//
-// const buttonElementOOS = document.getElementById("sold-out");
-// buttonElementOOS.addEventListener('click',outOfStock);
-
-// Bonus 2
+//Opdracht 2e
+const televisionToSell = sumTotalInventory(totalInventory) - totalAmountOfSales(amountOfSalesPerType);
+const toSellElement = document.getElementById("tvsToSell");
+toSellElement.textContent = `Het aantal te verkopen tv's is ${televisionToSell} stuks.`;

@@ -1,5 +1,4 @@
-// VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory3 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -162,55 +161,20 @@ const inventory = [
     },
 ];
 
-//Opdracht 1a
-const listOfTvTypes = inventory.map((tvType) => {
-    return tvType.type;
-});
+//Opdracht 3a
+const tvBrands = inventory3.map((tvBrand) => {
+    return tvBrand.brand;
+})
 
-console.log(listOfTvTypes);
+const brandsElement = document.getElementById("tvBrands");
+brandsElement.textContent = `Wij verkopen de volgende merken: ${tvBrands}.`
 
-// Opdracht 1b
-const tvsOutOfStock = inventory.filter((outOfStock) => {
-    return outOfStock.originalStock === outOfStock.sold;
-});
+//Opdracht 3b - snap ik de opdracht zo goed?
+function tvBrands2(arrayWithObjects) {
+    for (let i = 0; i < arrayWithObjects.length; i++) {
+        arrayWithObjects[i] = arrayWithObjects[i].brand;
+    }
+    return arrayWithObjects;
+}
 
-console.log(tvsOutOfStock);
-
-// Opdracht 1c
-
-const tvsWithAmbiLight = inventory.filter((tvWithAmbiLight) => {
-    return tvWithAmbiLight.options.ambiLight;
-});
-
-console.log(tvsWithAmbiLight);
-
-// Opdracht 1d
-const tvPriceLowToHigh = inventory.sort((a, b) => {
-    return a.price - b.price;
-});
-
-console.log(tvPriceLowToHigh);
-
-//Bonus 1
-// function sortPrice() {
-//     console.log(tvPriceLowToHigh);
-// }
-//
-// const buttonElementPrice = document.getElementById("sort-price");
-// buttonElementPrice.addEventListener('click',sortPrice);
-//
-// function ambiLight() {
-//    console.log(tvsWithAmbiLight);
-// }
-//
-// const buttonElementAmbi = document.getElementById("ambilight-tvs");
-// buttonElementAmbi.addEventListener('click',ambiLight);
-//
-// function outOfStock() {
-//     console.log(tvsOutOfStock);
-// }
-//
-// const buttonElementOOS = document.getElementById("sold-out");
-// buttonElementOOS.addEventListener('click',outOfStock);
-
-// Bonus 2
+console.log(tvBrands2(inventory3));
