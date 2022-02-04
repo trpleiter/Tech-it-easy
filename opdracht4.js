@@ -170,7 +170,7 @@ console.log(tvName(inventory4[0]));
 
 // Opdracht 4b
 function tvPrice(tvObject) {
-    return "€" + tvObject.price + ",-";
+    return `€${tvObject.price},-`;
 }
 
 console.log(tvPrice(inventory4[0]));
@@ -178,37 +178,8 @@ console.log(tvPrice(inventory4[0]));
 //Opdracht 4c
 
 function tvSize(tvObject) {
-    if (tvObject.availableSizes.length === 6) {
-        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[3] + " inch (" + tvObject.availableSizes[3] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[4] + " inch (" + tvObject.availableSizes[4] * 2.54.toFixed(0) + "cm)"
-            + tvObject.availableSizes[5] + " inch (" + tvObject.availableSizes[5] * 2.54.toFixed(0) + "cm)";
-    } else if (tvObject.availableSizes.length === 5) {
-        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[3] + " inch (" + tvObject.availableSizes[3] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[4] + " inch (" + tvObject.availableSizes[4] * 2.54.toFixed(0) + "cm)";
-    } else if (tvObject.availableSizes.length === 4) {
-        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[3] + " inch (" + tvObject.availableSizes[3] * 2.54.toFixed(0) + "cm)";
-    } else if (tvObject.availableSizes.length === 3) {
-        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[2] + " inch (" + tvObject.availableSizes[2] * 2.54.toFixed(0) + "cm)";
-    } else if (tvObject.availableSizes.length === 2) {
-        return tvObject.availableSizes[0] + " inch (" + tvObject.availableSizes[0] * 2.54.toFixed(0) + "cm) | "
-            + tvObject.availableSizes[1] + " inch (" + tvObject.availableSizes[1] * 2.54.toFixed(0) + "cm)";
-    } else {
-        return tvObject.availableSizes + " inch (" + tvObject.availableSizes * 2.54.toFixed(0) + "cm)";
-    }
+    return tvObject.availableSizes.map(size => `${size} inch (${(size * 2.54).toFixed(0)} cm)`).join(" | ");
 }
-
-console.log(tvSize(inventory4[6]));
 
 //Opdracht 4d
 const informationElement = document.getElementById("tvInformation");

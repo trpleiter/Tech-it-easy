@@ -171,7 +171,7 @@ console.log(listOfTvTypes);
 
 // Opdracht 1b
 const tvsOutOfStock = inventory.filter((outOfStock) => {
-    return outOfStock.originalStock - outOfStock.sold === 0;
+    return outOfStock.originalStock === outOfStock.sold;
 });
 
 console.log(tvsOutOfStock);
@@ -179,7 +179,7 @@ console.log(tvsOutOfStock);
 // Opdracht 1c
 
 const tvsWithAmbiLight = inventory.filter((tvWithAmbiLight) => {
-    return tvWithAmbiLight.options.ambiLight === true;
+    return tvWithAmbiLight.options.ambiLight;
 });
 
 console.log(tvsWithAmbiLight);
